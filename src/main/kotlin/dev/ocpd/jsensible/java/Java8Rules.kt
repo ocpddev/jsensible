@@ -29,8 +29,12 @@ object Java8Rules {
             .because("modern Java projects should use the Java 8 [java.time] API instead")
 
     /**
+     * [Date], [Calendar], [DateFormat], and [TimeZone] are legacy date/time
+     * API that should be avoided in modern Java projects.
      *
      * For more information: https://dev.java/learn/date-time/legacy-code/
+     *
+     * Solution: Use the [java.time] API provided by JDK 8 instead.
      */
     fun noLegacyDateTime(): ArchRule =
         noClasses().should(useLegacyDateTime())
