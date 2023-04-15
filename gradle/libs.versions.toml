@@ -1,0 +1,10 @@
+[versions]
+kotlin = "1.8.20"
+archunit = "1.0.1"
+[plugins]
+kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
+dokka = { id = "org.jetbrains.dokka", version = "1.8.10" }
+[libraries]
+archunit = { group = "com.tngtech.archunit", name = "archunit", version.ref = "archunit" }
+archunit-junit = { group = "com.tngtech.archunit", name = "archunit-junit5", version.ref = "archunit" }
+[bundles]
