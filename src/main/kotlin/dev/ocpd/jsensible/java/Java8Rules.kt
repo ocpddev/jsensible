@@ -1,11 +1,9 @@
 package dev.ocpd.jsensible.java
 
-import com.tngtech.archunit.core.domain.JavaClass.Predicates.assignableTo
-import com.tngtech.archunit.core.domain.JavaClass.Predicates.belongToAnyOf
 import com.tngtech.archunit.lang.ArchRule
-import com.tngtech.archunit.lang.conditions.ArchConditions.accessClassesThat
 import com.tngtech.archunit.lang.syntax.ArchRuleDefinition.noClasses
 import com.tngtech.archunit.library.GeneralCodingRules
+import dev.ocpd.jsensible.java.internal.LegacyDateTime.useLegacyDateTime
 import java.text.DateFormat
 import java.util.*
 
@@ -39,16 +37,4 @@ object Java8Rules {
     fun noLegacyDateTime(): ArchRule =
         noClasses().should(useLegacyDateTime())
             .because("modern Java projects should use the Java 8 [java.time] API instead")
-
-    private fun useLegacyDateTime() =
-        accessClassesThat(
-            assignableTo(
-                belongToAnyOf(
-                    Date::class.java,
-                    Calendar::class.java,
-                    DateFormat::class.java,
-                    TimeZone::class.java
-                )
-            )
-        ).`as`("use legacy date/time API")
 }
