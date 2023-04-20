@@ -5,5 +5,5 @@ import com.tngtech.archunit.lang.CompositeArchRule
 object JSensible {
     fun all() = CompositeArchRule.of(
         JSensibleRules.all()
-    )
+    ).`as`("JSensible Rules")
 }
