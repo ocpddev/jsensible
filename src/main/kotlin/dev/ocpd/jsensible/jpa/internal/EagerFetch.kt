@@ -21,6 +21,10 @@ object EagerFetch {
             associationWithEagerFetch()
         ).`as`("use eager fetch")
 
+    /**
+     * Check if the annotation is a JPA association annotation and configured
+     * to EAGER fetch.
+     */
     private fun associationWithEagerFetch(): DescribedPredicate<JavaAnnotation<*>> {
         val associationAnnotations = associationAnnotations()
         return describe("eager fetch annotation") { annotation: JavaAnnotation<*> ->
