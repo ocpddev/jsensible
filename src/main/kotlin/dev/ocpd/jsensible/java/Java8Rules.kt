@@ -20,7 +20,7 @@ object Java8Rules {
     /**
      * JodaTime is a legacy library that is no longer maintained.
      *
-     * Solution: Use the [java.time] API provided by JDK instead.
+     * Solution: Use the [java.time] API provided by JDK 8 instead.
      */
     fun noJodaTime(): ArchRule =
         GeneralCodingRules.NO_CLASSES_SHOULD_USE_JODATIME

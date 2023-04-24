@@ -11,12 +11,12 @@ import com.tngtech.archunit.lang.conditions.ArchConditions.beAnnotatedWith
 /**
  * Eager fetch usage condition.
  */
-object EagerFetch {
+internal object EagerFetch {
 
     /**
      * Matches eager fetch usage.
      */
-    fun useEagerFetch(): ArchCondition<in JavaMember> =
+    internal fun useEagerFetch(): ArchCondition<in JavaMember> =
         beAnnotatedWith(
             associationWithEagerFetch()
         ).`as`("use eager fetch")

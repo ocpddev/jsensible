@@ -13,4 +13,9 @@ internal object JavaClassPredicates {
         describe("any of ${formatNamesOf(*classes)}") { clz: JavaClass ->
             classes.any(clz::isEquivalentTo)
         }
+
+    internal fun anyOf(vararg classes: String): DescribedPredicate<JavaClass> =
+        describe("any of ${classes.contentToString()}") { clz: JavaClass ->
+            classes.contains(clz.name)
+        }
 }
