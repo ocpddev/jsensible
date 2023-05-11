@@ -2,7 +2,7 @@ package dev.ocpd.jsensible.nullsafety
 
 import com.tngtech.archunit.lang.ArchRule
 import com.tngtech.archunit.lang.syntax.ArchRuleDefinition.all
-import dev.ocpd.jsensible.internal.Transformers.packages
+import dev.ocpd.jsensible.internal.Transformers.javaPackages
 import dev.ocpd.jsensible.nullsafety.internal.NonNullByDefault.beNonNullByDefault
 
 /**
@@ -20,6 +20,6 @@ object NullSafetyRules {
      * `org.springframework.lang.NonNullApi` if you have Spring in your dependencies.
      */
     fun nonNullByDefault(): ArchRule =
-        all(packages()).should(beNonNullByDefault())
+        all(javaPackages()).should(beNonNullByDefault())
             .because("null safety should be enforced for all packages")
 }

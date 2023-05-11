@@ -7,9 +7,15 @@ import com.tngtech.archunit.lang.AbstractClassesTransformer
 
 internal object Transformers {
 
-    internal fun packages() = object : AbstractClassesTransformer<JavaPackage>("java packages") {
+    internal fun packages() = object : AbstractClassesTransformer<JavaPackage>("packages") {
         override fun doTransform(collection: JavaClasses): Iterable<JavaPackage> {
             return collection.mapTo(mutableSetOf(), JavaClass::getPackage)
+        }
+    }
+
+    internal fun javaPackages() = object : AbstractClassesTransformer<JavaPackage>("java packages") {
+        override fun doTransform(collection: JavaClasses): Iterable<JavaPackage> {
+            return collection.filterNot(JavaClass::isKotlin).mapTo(mutableSetOf(), JavaClass::getPackage)
         }
     }
 }
