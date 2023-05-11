@@ -7,7 +7,7 @@ import com.tngtech.archunit.lang.AbstractClassesTransformer
 
 internal object Transformers {
 
-    internal fun packages() = object : AbstractClassesTransformer<JavaPackage>("java package") {
+    internal fun packages() = object : AbstractClassesTransformer<JavaPackage>("java packages") {
         override fun doTransform(collection: JavaClasses): Iterable<JavaPackage> {
             return collection.mapTo(mutableSetOf(), JavaClass::getPackage)
         }
