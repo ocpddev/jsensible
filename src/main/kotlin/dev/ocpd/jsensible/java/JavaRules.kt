@@ -1,7 +1,9 @@
 package dev.ocpd.jsensible.java
 
 import com.tngtech.archunit.lang.ArchRule
+import com.tngtech.archunit.lang.syntax.ArchRuleDefinition.noClasses
 import com.tngtech.archunit.library.GeneralCodingRules
+import dev.ocpd.jsensible.java.internal.LegacyIoFile.useLegacyIoFile
 
 /**
  * Contains rules that are applicable to Java versions prior to Java 8.
@@ -11,6 +13,7 @@ object JavaRules {
     fun all() = listOf(
         noStandardStreams(),
         noJavaUtilLogging(),
+        noLegacyIoFile(),
         noGenericExceptions(),
         testsShouldResideInSamePackage(),
         noFieldInjection()
@@ -35,6 +38,17 @@ object JavaRules {
     fun noJavaUtilLogging(): ArchRule =
         GeneralCodingRules.NO_CLASSES_SHOULD_USE_JAVA_UTIL_LOGGING
             .because("proper logging facade should be used instead")
+
+    /**
+     * The [java.io.File] has many drawbacks and should not be used.
+     *
+     * For more information: https://www.baeldung.com/java-path-vs-file
+     *
+     * Solution: Use [java.nio.file.Path] and [java.nio.file.Files] instead.
+     */
+    fun noLegacyIoFile(): ArchRule =
+        noClasses().should(useLegacyIoFile())
+            .because("[java.io.File] has many drawbacks and should not be used, use [java.nio.file.Files] instead")
 
     /**
      * Generic exception provides very little information about the actual problem.

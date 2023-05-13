@@ -8,30 +8,32 @@ import com.tngtech.archunit.lang.conditions.ArchConditions.dependOnClassesThat
 import dev.ocpd.jsensible.internal.JavaClassPredicates.anyOf
 
 /**
- * Legacy date/time API usage condition.
+ * Legacy IO file API usage condition.
  */
-internal object LegacyDateTime {
+internal object LegacyIoFile {
 
     /**
-     * Matches legacy date/time API access.
+     * Matches legacy IO file API access.
      *
      * Note: many of them can be subclassed, thus this checks the assignability instead.
      */
-    internal fun useLegacyDateTime(): ArchCondition<JavaClass> =
+    internal fun useLegacyIoFile(): ArchCondition<JavaClass> =
         dependOnClassesThat(
             assignableTo(
-                legacyDateTimeClasses()
+                legacyIoFileClasses()
             )
-        ).`as`("use legacy date/time API")
+        )
 
     /**
-     * Defines legacy date/time API classes.
+     * Define legacy IO file API classes.
      */
-    private fun legacyDateTimeClasses(): DescribedPredicate<JavaClass> =
+    private fun legacyIoFileClasses(): DescribedPredicate<JavaClass> =
         anyOf(
-            java.util.Date::class.java,
-            java.util.Calendar::class.java,
-            java.text.DateFormat::class.java,
-            java.util.TimeZone::class.java
+            java.io.File::class.java,
+            java.io.RandomAccessFile::class.java,
+            java.io.FileInputStream::class.java,
+            java.io.FileOutputStream::class.java,
+            java.io.FileReader::class.java,
+            java.io.FileWriter::class.java
         )
 }
