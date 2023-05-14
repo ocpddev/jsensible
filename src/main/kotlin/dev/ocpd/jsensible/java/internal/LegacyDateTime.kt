@@ -33,5 +33,5 @@ internal object LegacyDateTime {
             java.util.Calendar::class.java,
             java.text.DateFormat::class.java,
             java.util.TimeZone::class.java
-        )
+        ).`as`("legacy date/time API classes")
 }

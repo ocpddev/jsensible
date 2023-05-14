@@ -22,7 +22,7 @@ internal object LegacyIoFile {
             assignableTo(
                 legacyIoFileClasses()
             )
-        )
+        ).`as`("use legacy IO file API")
 
     /**
      * Define legacy IO file API classes.
@@ -35,5 +35,5 @@ internal object LegacyIoFile {
             java.io.FileOutputStream::class.java,
             java.io.FileReader::class.java,
             java.io.FileWriter::class.java
-        )
+        ).`as`("legacy IO file API classes")
 }
