@@ -15,7 +15,7 @@ object JavaRules {
         noJavaUtilLogging(),
         noLegacyIoFile(),
         noGenericExceptions(),
-        testsShouldResideInSamePackage(),
+        noMisplacedTests(),
         noFieldInjection()
     ) + Java8Rules.all() + Java11Rules.all() + Java17Rules.all()
 
@@ -70,7 +70,7 @@ object JavaRules {
      *
      * Solution: Move test classes to the same package as implementation.
      */
-    fun testsShouldResideInSamePackage(): ArchRule =
+    fun noMisplacedTests(): ArchRule =
         GeneralCodingRules.testClassesShouldResideInTheSamePackageAsImplementation()
             .because("it allows to access package-private members and use package-private classes as test fixtures")
 
