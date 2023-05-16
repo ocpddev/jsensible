@@ -1,8 +1,8 @@
-package dev.ocpd.jsensible.nullsafety.internal
+package dev.ocpd.jsensible.internal.nullability
 
 import com.tngtech.archunit.core.domain.properties.CanBeAnnotated.Predicates.metaAnnotatedWith
 import dev.ocpd.jsensible.internal.JavaPackageCondition
-import dev.ocpd.jsensible.nullsafety.internal.NullabilityAnnotations.nonNullAnnotations
+import dev.ocpd.jsensible.internal.nullability.NullabilityAnnotations.nonNullAnnotations
 
 /**
  * Conditions for enforcing non-null by default.

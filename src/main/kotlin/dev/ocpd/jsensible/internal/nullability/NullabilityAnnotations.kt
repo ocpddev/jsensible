@@ -1,4 +1,4 @@
-package dev.ocpd.jsensible.nullsafety.internal
+package dev.ocpd.jsensible.internal.nullability
 
 import com.tngtech.archunit.base.DescribedPredicate
 import com.tngtech.archunit.core.domain.JavaAnnotation

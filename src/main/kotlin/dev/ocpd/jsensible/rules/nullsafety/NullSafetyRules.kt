@@ -1,9 +1,9 @@
-package dev.ocpd.jsensible.nullsafety
+package dev.ocpd.jsensible.rules.nullsafety
 
 import com.tngtech.archunit.lang.ArchRule
 import com.tngtech.archunit.lang.syntax.ArchRuleDefinition.all
 import dev.ocpd.jsensible.internal.Transformers.javaPackages
-import dev.ocpd.jsensible.nullsafety.internal.NonNullByDefault.beNonNullByDefault
+import dev.ocpd.jsensible.internal.nullability.NonNullByDefault.beNonNullByDefault
 
 /**
  * Contains rules to enforce null safety.

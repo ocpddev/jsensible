@@ -1,9 +1,9 @@
-package dev.ocpd.jsensible.java
+package dev.ocpd.jsensible.rules.java
 
 import com.tngtech.archunit.lang.ArchRule
 import com.tngtech.archunit.lang.syntax.ArchRuleDefinition.noClasses
 import com.tngtech.archunit.library.GeneralCodingRules
-import dev.ocpd.jsensible.java.internal.LegacyDateTime.useLegacyDateTime
+import dev.ocpd.jsensible.internal.java.LegacyDateTime.useLegacyDateTime
 import java.text.DateFormat
 import java.util.*
 

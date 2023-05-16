@@ -1,4 +1,4 @@
-package dev.ocpd.jsensible.spring
+package dev.ocpd.jsensible.rules.spring
 
 import com.tngtech.archunit.lang.syntax.ArchRuleDefinition.noClasses
 import com.tngtech.archunit.lang.syntax.ArchRuleDefinition.noMethods

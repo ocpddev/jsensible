@@ -1,4 +1,4 @@
-package dev.ocpd.jsensible.java
+package dev.ocpd.jsensible.rules.java
 
 import com.tngtech.archunit.lang.ArchRule
 import com.tngtech.archunit.lang.syntax.ArchRuleDefinition.noClasses

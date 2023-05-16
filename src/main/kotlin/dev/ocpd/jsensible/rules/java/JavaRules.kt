@@ -1,9 +1,9 @@
-package dev.ocpd.jsensible.java
+package dev.ocpd.jsensible.rules.java
 
 import com.tngtech.archunit.lang.ArchRule
 import com.tngtech.archunit.lang.syntax.ArchRuleDefinition.noClasses
 import com.tngtech.archunit.library.GeneralCodingRules
-import dev.ocpd.jsensible.java.internal.LegacyIoFile.useLegacyIoFile
+import dev.ocpd.jsensible.internal.java.LegacyIoFile.useLegacyIoFile
 
 /**
  * Contains rules that are applicable to Java versions prior to Java 8.

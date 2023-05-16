@@ -1,4 +1,4 @@
-package dev.ocpd.jsensible.java.internal
+package dev.ocpd.jsensible.internal.java
 
 import com.tngtech.archunit.base.DescribedPredicate
 import com.tngtech.archunit.core.domain.JavaClass

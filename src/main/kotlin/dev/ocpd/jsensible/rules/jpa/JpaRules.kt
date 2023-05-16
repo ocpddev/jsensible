@@ -1,8 +1,8 @@
-package dev.ocpd.jsensible.jpa
+package dev.ocpd.jsensible.rules.jpa
 
 import com.tngtech.archunit.lang.ArchRule
 import com.tngtech.archunit.lang.syntax.ArchRuleDefinition.noMembers
-import dev.ocpd.jsensible.jpa.internal.EagerFetch.useEagerFetch
+import dev.ocpd.jsensible.internal.jpa.EagerFetch.useEagerFetch
 
 /**
  * General Java/Jakarta Persistence API (JPA) rules.

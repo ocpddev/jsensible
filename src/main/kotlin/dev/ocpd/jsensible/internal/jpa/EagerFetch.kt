@@ -1,4 +1,4 @@
-package dev.ocpd.jsensible.jpa.internal
+package dev.ocpd.jsensible.internal.jpa
 
 import com.tngtech.archunit.base.DescribedPredicate
 import com.tngtech.archunit.base.DescribedPredicate.describe
