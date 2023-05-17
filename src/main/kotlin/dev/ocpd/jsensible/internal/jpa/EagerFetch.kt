@@ -27,7 +27,7 @@ internal object EagerFetch {
      */
     private fun associationWithEagerFetch(): DescribedPredicate<JavaAnnotation<*>> {
         val associationAnnotations = associationAnnotations()
-        return describe("eager fetch annotation") { annotation: JavaAnnotation<*> ->
+        return describe("association with eager fetch") { annotation: JavaAnnotation<*> ->
             if (annotation.type.name !in associationAnnotations) return@describe false
 
             val value = annotation["fetch"].orElse(null)

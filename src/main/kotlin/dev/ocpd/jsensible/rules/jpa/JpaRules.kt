@@ -3,6 +3,7 @@ package dev.ocpd.jsensible.rules.jpa
 import com.tngtech.archunit.lang.ArchRule
 import com.tngtech.archunit.lang.syntax.ArchRuleDefinition.noMembers
 import dev.ocpd.jsensible.internal.jpa.EagerFetch.useEagerFetch
+import dev.ocpd.jsensible.internal.jpa.OneToMany.useOneToMany
 
 /**
  * General Java/Jakarta Persistence API (JPA) rules.
@@ -14,7 +15,7 @@ object JpaRules {
     )
 
     /**
-     * Eager fetch is a performance anti-pattern.
+     * Eager fetching is a performance anti-pattern.
      *
      * The fetching strategy should never be the entity mapping responsibility.
      * Global fetch plan should only define LAZY associations. In case an EAGER
@@ -27,6 +28,12 @@ object JpaRules {
      */
     fun noEagerFetch(): ArchRule =
         noMembers().should(useEagerFetch())
-            .`as`("use eager fetch")
-            .because("no property should be fetched eagerly by default")
+            .because("eager fetching is a performance anti-pattern")
+
+    /**
+     * For more information: https://vladmihalcea.com/the-best-way-to-map-a-onetomany-association-with-jpa-and-hibernate/
+     */
+    fun noOneToMany(): ArchRule =
+        noMembers().should(useOneToMany())
+            .because("")
 }
