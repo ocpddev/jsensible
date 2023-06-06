@@ -4,7 +4,7 @@ import com.tngtech.archunit.lang.ArchRule
 import com.tngtech.archunit.lang.syntax.ArchRuleDefinition.noClasses
 import com.tngtech.archunit.lang.syntax.ArchRuleDefinition.noMembers
 import dev.ocpd.jsensible.internal.jpa.EagerFetch.useEagerFetch
-import dev.ocpd.jsensible.internal.jpa.NotSpringNullable.noUseSpringNullable
+import dev.ocpd.jsensible.internal.jpa.NotSpringNullable.notUseSpringNullable
 
 /**
  * General Java/Jakarta Persistence API (JPA) rules.
@@ -13,7 +13,7 @@ object JpaRules {
 
     fun all() = listOf(
         noEagerFetch(),
-        useSpringNullableAnnotation()
+        onlyUseSpringNullableAnnotation()
     )
 
     /**
@@ -42,9 +42,9 @@ object JpaRules {
      *
      * Solution: Use the [org.springframework.lang.Nullable] annotation.
      */
-    fun useSpringNullableAnnotation(): ArchRule =
+    fun onlyUseSpringNullableAnnotation(): ArchRule =
         noClasses()
             .that().areAssignableTo("org.springframework.data.repository.Repository")
-            .should(noUseSpringNullable())
+            .should(notUseSpringNullable())
             .because("only support the [org.springframework.lang.Nullable] annotation]")
 }

@@ -12,14 +12,6 @@ import dev.ocpd.jsensible.internal.JavaClassPredicates.anyOf
  */
 internal object NullabilityAnnotations {
 
-    internal fun nullableAnnotations(): DescribedPredicate<JavaAnnotation<*>> = rawType(
-        anyOf(
-            "org.jetbrains.annotations.Nullable",
-            "javax.annotation.Nullable",
-            "org.springframework.lang.Nullable"
-        )
-    ).forSubtype()
-
     internal fun nonNullAnnotations(): DescribedPredicate<JavaAnnotation<*>> = rawType(
         anyOf(
             "org.jetbrains.annotations.NotNull",
@@ -28,10 +20,10 @@ internal object NullabilityAnnotations {
         )
     ).forSubtype()
 
-    internal fun nullableClasses(): DescribedPredicate<JavaClass> =
+    internal fun nullableAnnotations(): DescribedPredicate<JavaClass> =
         simpleName("Nullable")
 
-    internal fun springNullableClasses(): DescribedPredicate<JavaClass> =
+    internal fun springNullableAnnotation(): DescribedPredicate<JavaClass> =
         anyOf(
             "org.springframework.lang.Nullable"
         )

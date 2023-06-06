@@ -5,22 +5,22 @@ import com.tngtech.archunit.core.domain.JavaClass
 import com.tngtech.archunit.core.domain.JavaClass.Predicates.assignableTo
 import com.tngtech.archunit.lang.ArchCondition
 import com.tngtech.archunit.lang.conditions.ArchConditions.dependOnClassesThat
-import dev.ocpd.jsensible.internal.nullability.NullabilityAnnotations.nullableClasses
-import dev.ocpd.jsensible.internal.nullability.NullabilityAnnotations.springNullableClasses
+import dev.ocpd.jsensible.internal.nullability.NullabilityAnnotations.nullableAnnotations
+import dev.ocpd.jsensible.internal.nullability.NullabilityAnnotations.springNullableAnnotation
 
 /**
- * No use spring nullable conditions.
+ * Not use spring nullable conditions.
  */
 internal object NotSpringNullable {
 
     /**
      * Matches not spring nullable.
      */
-    internal fun noUseSpringNullable(): ArchCondition<in JavaClass> =
+    internal fun notUseSpringNullable(): ArchCondition<in JavaClass> =
         dependOnClassesThat(
             assignableTo(
-                nullableClasses()
-                    .and(not(springNullableClasses()))
+                nullableAnnotations()
+                    .and(not(springNullableAnnotation()))
             )
         ).`as`("no use spring nullable")
 }
