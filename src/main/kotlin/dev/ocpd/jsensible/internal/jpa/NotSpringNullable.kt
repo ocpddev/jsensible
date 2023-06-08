@@ -16,11 +16,11 @@ internal object NotSpringNullable {
     /**
      * Matches not spring nullable.
      */
-    internal fun notUseSpringNullable(): ArchCondition<in JavaClass> =
+    internal fun notUseSpringNullable(): ArchCondition<JavaClass> =
         dependOnClassesThat(
             assignableTo(
                 nullableAnnotations()
                     .and(not(springNullableAnnotation()))
             )
-        ).`as`("no use spring nullable")
+        ).`as`("not use spring nullable")
 }

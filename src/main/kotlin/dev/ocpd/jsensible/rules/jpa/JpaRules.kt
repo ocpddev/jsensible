@@ -34,7 +34,7 @@ object JpaRules {
             .because("no property should be fetched eagerly by default")
 
     /**
-     * only support the [org.springframework.lang.Nullable] annotation
+     * Only support the [org.springframework.lang.Nullable] annotation
      *
      * Spring Data Repositories only support the usage of their own
      * [org.springframework.lang.Nullable] annotation. Misuses could

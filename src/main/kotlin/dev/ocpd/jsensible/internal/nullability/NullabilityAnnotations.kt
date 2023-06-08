@@ -3,6 +3,7 @@ package dev.ocpd.jsensible.internal.nullability
 import com.tngtech.archunit.base.DescribedPredicate
 import com.tngtech.archunit.core.domain.JavaAnnotation
 import com.tngtech.archunit.core.domain.JavaClass
+import com.tngtech.archunit.core.domain.JavaClass.Predicates.assignableTo
 import com.tngtech.archunit.core.domain.JavaClass.Predicates.simpleName
 import com.tngtech.archunit.core.domain.properties.HasType.Predicates.rawType
 import dev.ocpd.jsensible.internal.JavaClassPredicates.anyOf
@@ -24,7 +25,5 @@ internal object NullabilityAnnotations {
         simpleName("Nullable")
 
     internal fun springNullableAnnotation(): DescribedPredicate<JavaClass> =
-        anyOf(
-            "org.springframework.lang.Nullable"
-        )
+        assignableTo("org.springframework.lang.Nullable")
 }
