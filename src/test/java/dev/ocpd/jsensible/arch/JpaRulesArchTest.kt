@@ -11,10 +11,16 @@ import dev.ocpd.jsensible.rules.jpa.JpaRules
 class JpaRulesArchTest {
 
     @ArchTest
-    fun `only use spring nullable annotation`(classes: JavaClasses) {
+    fun `use spring nullable annotation`(classes: JavaClasses) {
         JpaRules
             .onlyUseSpringNullableAnnotation()
             .check(classes)
     }
 
+    @ArchTest
+    fun `use jetbrains nullable annotation`(classes: JavaClasses) {
+        JpaRules
+            .onlyUseSpringNullableAnnotation()
+            .check(classes)
+    }
 }
