@@ -40,6 +40,8 @@ dependencies {
     api(libs.archunit)
     testImplementation(kotlin("test"))
     testImplementation(libs.archunit.junit)
+    testImplementation("org.springframework.boot:spring-boot-starter-data-jpa:3.1.0")
+    testImplementation("org.springframework.boot:spring-boot-starter-test:3.1.0")
 }
 
 publishing {
