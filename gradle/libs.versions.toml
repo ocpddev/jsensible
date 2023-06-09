@@ -1,10 +1,15 @@
 [versions]
 kotlin = "1.8.21"
 archunit = "1.0.1"
+
 [plugins]
 kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
 dokka = { id = "org.jetbrains.dokka", version = "1.8.10" }
+spring-boot = { id = "org.springframework.boot", version = "3.1.0"}
+spring-dependency-management = { id = "io.spring.dependency-management", version = "1.1.0"}
+
 [libraries]
 archunit = { group = "com.tngtech.archunit", name = "archunit", version.ref = "archunit" }
 archunit-junit = { group = "com.tngtech.archunit", name = "archunit-junit5", version.ref = "archunit" }
+
 [bundles]

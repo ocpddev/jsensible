@@ -1,6 +1,8 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
+    alias(libs.plugins.spring.boot)
+    alias(libs.plugins.spring.dependency.management)
     alias(libs.plugins.kotlin.jvm)
     alias(libs.plugins.dokka)
     `maven-publish`
@@ -40,8 +42,8 @@ dependencies {
     api(libs.archunit)
     testImplementation(kotlin("test"))
     testImplementation(libs.archunit.junit)
-    testImplementation("org.springframework.boot:spring-boot-starter-data-jpa:3.1.0")
-    testImplementation("org.springframework.boot:spring-boot-starter-test:3.1.0")
+    testImplementation("org.springframework.boot:spring-boot-starter-data-jpa")
+    testImplementation("org.springframework.boot:spring-boot-starter-test")
 }
 
 publishing {
