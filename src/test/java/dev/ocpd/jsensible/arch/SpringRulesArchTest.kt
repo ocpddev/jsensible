@@ -6,7 +6,7 @@ import dev.ocpd.jsensible.repo.UseSpringNullableRepo
 import dev.ocpd.jsensible.rules.spring.SpringRules
 import org.junit.jupiter.api.Test
 
-class JpaRulesArchTest {
+class SpringRulesArchTest {
 
     @Test
     fun `use spring nullable annotation`() {
