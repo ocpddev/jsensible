@@ -6,5 +6,5 @@ import org.junit.jupiter.api.Test
 class Java11RulesTest {
 
     @Test
-    fun noOptionalGet() = testRule<NoOptionalGet>(Java11Rules.noOptionGet())
+    fun noOptionalGet() = testRule<NoOptionalGet>(Java11Rules.noOptionalGet())
 }

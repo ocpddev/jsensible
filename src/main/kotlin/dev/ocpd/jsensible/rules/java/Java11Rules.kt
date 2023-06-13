@@ -12,7 +12,7 @@ import java.util.*
 object Java11Rules {
 
     fun all() = listOf(
-        noOptionGet(),
+        noOptionalGet(),
         noPathsGet()
     )
 
@@ -23,7 +23,7 @@ object Java11Rules {
      *
      * Solution: Replace [Optional.get] with [Optional.orElseThrow].
      */
-    fun noOptionGet(): ArchRule =
+    fun noOptionalGet(): ArchRule =
         noClasses().should().callMethod(Optional::class.java, "get")
             .`as`("call [Optional.get]")
             .because("JDK recommends [Optional.orElseThrow] as the preferred alternative")
