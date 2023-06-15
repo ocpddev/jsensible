@@ -15,7 +15,7 @@ public class NoOptionalGet {
     public static class NonCompliant {
 
         public String nonCompliant() {
-            return Optional.of("test").orElseThrow();
+            return Optional.of("test").get();
         }
     }
 }
