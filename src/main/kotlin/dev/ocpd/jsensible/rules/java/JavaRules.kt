@@ -1,9 +1,11 @@
 package dev.ocpd.jsensible.rules.java
 
 import com.tngtech.archunit.lang.ArchRule
+import com.tngtech.archunit.lang.syntax.ArchRuleDefinition.methods
 import com.tngtech.archunit.lang.syntax.ArchRuleDefinition.noClasses
 import com.tngtech.archunit.library.GeneralCodingRules
 import dev.ocpd.jsensible.internal.java.LegacyIoFile.useLegacyIoFile
+import dev.ocpd.jsensible.internal.java.ParameterIsNullable.parameterIsNullable
 
 /**
  * Contains rules that are applicable to Java versions prior to Java 8.
@@ -16,7 +18,8 @@ object JavaRules {
         noLegacyIoFile(),
         noGenericExceptions(),
         noMisplacedTests(),
-        noFieldInjection()
+        noFieldInjection(),
+        equalsMethodShouldBeNullable()
     ) + Java8Rules.all() + Java11Rules.all() + Java17Rules.all()
 
     /**
@@ -88,4 +91,15 @@ object JavaRules {
     fun noFieldInjection(): ArchRule =
         GeneralCodingRules.NO_CLASSES_SHOULD_USE_FIELD_INJECTION
             .because("field injection is considered harmful and should be avoided, use constructor injection instead")
+
+    /**
+     * The operand of the equals method should be nullable
+     *
+     * Solution: Annotate @Nullable for all parameters in the equals method
+     */
+    fun equalsMethodShouldBeNullable(): ArchRule =
+        methods()
+            .that().haveName("equals")
+            .should(parameterIsNullable())
+            .because("parameters in equals method should be annotated with @Nullable")
 }
