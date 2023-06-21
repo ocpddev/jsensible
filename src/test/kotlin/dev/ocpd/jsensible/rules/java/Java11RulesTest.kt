@@ -7,4 +7,7 @@ class Java11RulesTest {
 
     @Test
     fun noOptionalGet() = testRule<NoOptionalGet>(Java11Rules.noOptionalGet())
+
+    @Test
+    fun noPathsGet() = testRule<NoPathsGet>(Java11Rules.noPathsGet())
 }
