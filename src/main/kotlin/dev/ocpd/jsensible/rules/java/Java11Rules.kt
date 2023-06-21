@@ -25,7 +25,6 @@ object Java11Rules {
      */
     fun noOptionalGet(): ArchRule =
         noClasses().should().callMethod(Optional::class.java, "get")
-            .`as`("call [Optional.get]")
             .because("JDK recommends [Optional.orElseThrow] as the preferred alternative")
 
     /**
@@ -39,6 +38,5 @@ object Java11Rules {
      */
     fun noPathsGet(): ArchRule =
         noClasses().should().callMethod(Paths::class.java, "get")
-            .`as`("call [Paths.get]")
             .because("JDK recommends to obtain a [Path] via the [Path.of] methods instead")
 }

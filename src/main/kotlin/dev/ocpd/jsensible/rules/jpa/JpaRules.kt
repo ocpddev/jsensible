@@ -27,6 +27,5 @@ object JpaRules {
      */
     fun noEagerFetch(): ArchRule =
         noMembers().should(useEagerFetch())
-            .`as`("use eager fetch")
             .because("no property should be fetched eagerly by default")
 }
