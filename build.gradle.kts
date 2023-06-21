@@ -3,6 +3,8 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 plugins {
     alias(libs.plugins.kotlin.jvm)
     alias(libs.plugins.dokka)
+    alias(libs.plugins.spring.boot) apply false
+    alias(libs.plugins.spring.dependency.management)
     `maven-publish`
     signing
 }
@@ -36,10 +38,15 @@ repositories {
     mavenCentral()
 }
 
+dependencyManagement {
+    imports { mavenBom(org.springframework.boot.gradle.plugin.SpringBootPlugin.BOM_COORDINATES) }
+}
+
 dependencies {
     api(libs.archunit)
     testImplementation(kotlin("test"))
     testImplementation(libs.archunit.junit)
+    testImplementation("org.springframework.boot:spring-boot-starter-data-jpa")
 }
 
 publishing {
