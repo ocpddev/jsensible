@@ -9,27 +9,27 @@ import com.tngtech.archunit.lang.syntax.ArchRuleDefinition.noMethods
 object SpringRules {
 
     fun all() = listOf(
-        noJavaxTransactionOnClass(),
-        noJavaxTransactionOnMethod()
+        noJakartaTransactionOnClass(),
+        noJakartaTransactionOnMethod()
     )
 
     /**
      * The [org.springframework.transaction.annotation.Transactional] should be preferred in a Spring application,
-     * and it provides more functionality compared to the [javax.transaction.Transactional] annotation.
+     * and it provides more functionality compared to the [jakarta.transaction.Transactional] annotation.
      *
-     * Solution: Replace [javax.transaction.Transactional] with [org.springframework.transaction.annotation.Transactional].
+     * Solution: Replace [jakarta.transaction.Transactional] with [org.springframework.transaction.annotation.Transactional].
      */
-    fun noJavaxTransactionOnClass() =
-        noClasses().should().beAnnotatedWith("javax.transaction.Transactional")
+    fun noJakartaTransactionOnClass() =
+        noClasses().should().beAnnotatedWith("jakarta.transaction.Transactional")
             .because("in Spring application, it is recommended to use [org.springframework.transaction.annotation.Transactional] instead")
 
     /**
      * The [org.springframework.transaction.annotation.Transactional] should be preferred in a Spring application,
-     * and it provides more functionality compared to the [javax.transaction.Transactional] annotation.
+     * and it provides more functionality compared to the [jakarta.transaction.Transactional] annotation.
      *
-     * Solution: Replace [javax.transaction.Transactional] with [org.springframework.transaction.annotation.Transactional].
+     * Solution: Replace [jakarta.transaction.Transactional] with [org.springframework.transaction.annotation.Transactional].
      */
-    fun noJavaxTransactionOnMethod() =
-        noMethods().should().beAnnotatedWith("javax.transaction.Transactional")
+    fun noJakartaTransactionOnMethod() =
+        noMethods().should().beAnnotatedWith("jakarta.transaction.Transactional")
             .because("in Spring application, it is recommended to use [org.springframework.transaction.annotation.Transactional] instead")
 }

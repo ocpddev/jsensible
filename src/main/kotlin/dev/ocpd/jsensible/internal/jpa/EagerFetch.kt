@@ -36,11 +36,6 @@ internal object EagerFetch {
     }
 
     private fun associationAnnotations() = setOf(
-        "javax.persistence.OneToMany",
-        "javax.persistence.ManyToOne",
-        "javax.persistence.OneToOne",
-        "javax.persistence.ManyToMany",
-        "javax.persistence.ElementCollection",
         "jakarta.persistence.OneToMany",
         "jakarta.persistence.ManyToOne",
         "jakarta.persistence.OneToOne",
