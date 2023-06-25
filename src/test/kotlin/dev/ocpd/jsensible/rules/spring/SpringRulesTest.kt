@@ -7,4 +7,8 @@ class SpringRulesTest {
 
     @Test
     fun noJakartaTransactionOnClass() = testRule<NoJakartaTransactionOnClass>(SpringRules.noJakartaTransactionOnClass())
+
+    @Test
+    fun noJakartaTransactionOnMethod() =
+        testRule<NoJakartaTransactionOnMethod>(SpringRules.noJakartaTransactionOnMethod())
 }
