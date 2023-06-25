@@ -21,14 +21,14 @@ public class NoLegacyDateTime {
 
     public static class NonCompliant1 {
 
-        public java.util.Date nonCompliant() {
+        public Date nonCompliant() {
             return new Date();
         }
     }
 
     public static class NonCompliant2 {
 
-        public java.util.Calendar nonCompliant() {
+        public Calendar nonCompliant() {
             return Calendar.getInstance();
         }
     }
