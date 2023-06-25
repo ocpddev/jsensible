@@ -37,7 +37,7 @@ object SpringRules {
             .because("in Spring application, it is recommended to use [org.springframework.transaction.annotation.Transactional] instead")
 
     /**
-     * Spring Data Repositories only support their own [org.springframework.lang.Nullable] annotation
+     * Spring Data Repositories only support their own [org.springframework.lang.Nullable] annotation.
      *
      * Spring Data Repositories only support the usage of their own [org.springframework.lang.Nullable] annotation.
      * Misuses could lead to runtime errors when invoking repository methods.
@@ -48,5 +48,5 @@ object SpringRules {
         noClasses()
             .that().areAssignableTo("org.springframework.data.repository.Repository")
             .should(notUseSpringNullable())
-            .because("only support the [org.springframework.lang.Nullable] annotation]")
+            .because("in Spring Data Repositories, it only support the [org.springframework.lang.Nullable] annotation")
 }
