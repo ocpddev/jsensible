@@ -48,5 +48,5 @@ object SpringRules {
         noClasses()
             .that().areAssignableTo("org.springframework.data.repository.Repository")
             .should(useNonSpringNullable())
-            .because("in Spring Data Repositories, it only support the [org.springframework.lang.Nullable] annotation")
+            .because("Spring Data Repositories only support their own [org.springframework.lang.Nullable] annotation")
 }
