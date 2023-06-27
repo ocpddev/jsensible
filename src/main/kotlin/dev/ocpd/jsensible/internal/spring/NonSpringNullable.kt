@@ -10,14 +10,14 @@ import dev.ocpd.jsensible.internal.nullability.NullabilityAnnotations.springNull
 /**
  * Not use spring nullable conditions.
  */
-internal object NotSpringNullable {
+internal object NonSpringNullable {
 
     /**
      * Matches not spring nullable.
      */
-    internal fun notUseSpringNullable(): ArchCondition<JavaClass> =
+    internal fun useNonSpringNullable(): ArchCondition<JavaClass> =
         dependOnClassesThat(
             nullableAnnotations()
                 .and(not(springNullableAnnotation()))
-        ).`as`("not use spring nullable")
+        ).`as`("use non-spring [Nullable] annotations")
 }

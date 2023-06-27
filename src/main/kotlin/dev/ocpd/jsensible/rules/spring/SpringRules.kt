@@ -3,7 +3,7 @@ package dev.ocpd.jsensible.rules.spring
 import com.tngtech.archunit.lang.ArchRule
 import com.tngtech.archunit.lang.syntax.ArchRuleDefinition.noClasses
 import com.tngtech.archunit.lang.syntax.ArchRuleDefinition.noMethods
-import dev.ocpd.jsensible.internal.spring.NotSpringNullable.notUseSpringNullable
+import dev.ocpd.jsensible.internal.spring.NonSpringNullable.useNonSpringNullable
 
 /**
  * Contains rules that are applicable to Spring ecosystem (Spring Framework, Spring Boot, etc.).
@@ -13,7 +13,7 @@ object SpringRules {
     fun all() = listOf(
         noJakartaTransactionOnClass(),
         noJakartaTransactionOnMethod(),
-        onlyUseSpringNullableAnnotation()
+        noNullableMisuseInRepositories()
     )
 
     /**
@@ -44,9 +44,9 @@ object SpringRules {
      *
      * Solution: Use the [org.springframework.lang.Nullable] annotation.
      */
-    fun onlyUseSpringNullableAnnotation(): ArchRule =
+    fun noNullableMisuseInRepositories(): ArchRule =
         noClasses()
             .that().areAssignableTo("org.springframework.data.repository.Repository")
-            .should(notUseSpringNullable())
+            .should(useNonSpringNullable())
             .because("in Spring Data Repositories, it only support the [org.springframework.lang.Nullable] annotation")
 }
