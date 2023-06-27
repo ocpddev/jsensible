@@ -15,8 +15,9 @@ internal object NullabilityAnnotations {
     internal fun nonNullAnnotations(): DescribedPredicate<JavaAnnotation<*>> = rawType(
         anyOf(
             "org.jetbrains.annotations.NotNull",
+            "org.springframework.lang.NonNull",
             "jakarta.annotation.Nonnull",
-            "org.springframework.lang.NonNull"
+            "javax.annotation.Nonnull"
         )
     ).forSubtype()
 
