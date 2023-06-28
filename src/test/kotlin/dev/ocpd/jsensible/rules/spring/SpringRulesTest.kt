@@ -11,4 +11,8 @@ class SpringRulesTest {
     @Test
     fun noJakartaTransactionOnMethod() =
         testRule<NoJakartaTransactionOnMethod>(SpringRules.noJakartaTransactionOnMethod())
+
+    @Test
+    fun noNullableMisuseInRepositories() =
+        testRule<NoNullableMisuseInRepositories>(SpringRules.noNullableMisuseInRepositories())
 }
