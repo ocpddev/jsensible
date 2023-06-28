@@ -5,7 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 @SuppressWarnings("unused")
 public class NoNullableMisuseInRepositories {
 
-    public interface CompliantRepo extends JpaRepository<Object, Long> {
+    public interface Compliant extends JpaRepository<Object, Long> {
 
         @org.springframework.lang.Nullable
         Object findBy(String test);
@@ -13,7 +13,7 @@ public class NoNullableMisuseInRepositories {
         Object findObjectBy(@org.springframework.lang.Nullable String test);
     }
 
-    public interface NonCompliantRepo1 extends JpaRepository<Object, Long> {
+    public interface NonCompliant1 extends JpaRepository<Object, Long> {
 
         @jakarta.annotation.Nullable
         Object findBy(String test);
@@ -21,7 +21,7 @@ public class NoNullableMisuseInRepositories {
         Object findObjectBy(@jakarta.annotation.Nullable String test);
     }
 
-    public interface NonCompliantRepo2 extends JpaRepository<Object, Long> {
+    public interface NonCompliant2 extends JpaRepository<Object, Long> {
 
         @org.jetbrains.annotations.Nullable
         Object findBy(String test);
