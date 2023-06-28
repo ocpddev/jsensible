@@ -16,3 +16,17 @@ inline fun <reified T> testRule(rule: ArchRule) {
         }
     }
 }
+
+fun testPackageRule(packageName: String, rule: ArchRule) {
+    ClassFileImporter().importPackages(packageName).getPackage(packageName).subpackages
+        .map {
+            val importPackages = ClassFileImporter().importPackages(it.name)
+            if (it.relativeName.startsWith("compliant")) {
+                rule.check(importPackages)
+            } else if (it.relativeName.startsWith("noncompliant")) {
+                assertThrows<AssertionError> {
+                    rule.check(importPackages)
+                }
+            }
+        }
+}
