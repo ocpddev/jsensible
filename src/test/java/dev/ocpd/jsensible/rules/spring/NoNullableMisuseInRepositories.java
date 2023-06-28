@@ -17,14 +17,20 @@ public class NoNullableMisuseInRepositories {
 
         @jakarta.annotation.Nullable
         Object findBy(String test);
-
-        Object findObjectBy(@jakarta.annotation.Nullable String test);
     }
 
     public interface NonCompliant2 extends JpaRepository<Object, Long> {
 
+        Object findObjectBy(@jakarta.annotation.Nullable String test);
+    }
+
+    public interface NonCompliant3 extends JpaRepository<Object, Long> {
+
         @org.jetbrains.annotations.Nullable
         Object findBy(String test);
+    }
+
+    public interface NonCompliant4 extends JpaRepository<Object, Long> {
 
         Object findObjectBy(@org.jetbrains.annotations.Nullable String test);
     }
