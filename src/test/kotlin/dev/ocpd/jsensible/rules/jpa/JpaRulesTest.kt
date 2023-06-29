@@ -7,4 +7,7 @@ class JpaRulesTest {
 
     @Test
     fun noEagerFetch() = testRule<NoEagerFetch>(JpaRules.noEagerFetch())
+
+    @Test
+    fun noMisalignedNullability() = testRule<NoMisalignedNullability>(JpaRules.noMisalignedNullability())
 }
