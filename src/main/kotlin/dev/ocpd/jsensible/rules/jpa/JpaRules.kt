@@ -1,8 +1,11 @@
 package dev.ocpd.jsensible.rules.jpa
 
 import com.tngtech.archunit.lang.ArchRule
+import com.tngtech.archunit.lang.conditions.ArchConditions.notBeAnnotatedWith
 import com.tngtech.archunit.lang.syntax.ArchRuleDefinition.noMembers
 import dev.ocpd.jsensible.internal.jpa.EagerFetch.useEagerFetch
+import dev.ocpd.jsensible.internal.jpa.NullableOrOptional.useNullableOrOptional
+import dev.ocpd.jsensible.internal.nullability.NullabilityAnnotations.jetbrainsNullableAnnotation
 
 /**
  * General Java/Jakarta Persistence API (JPA) rules.
@@ -10,7 +13,8 @@ import dev.ocpd.jsensible.internal.jpa.EagerFetch.useEagerFetch
 object JpaRules {
 
     fun all() = listOf(
-        noEagerFetch()
+        noEagerFetch(),
+        noNullableOrOptional()
     )
 
     /**
@@ -28,4 +32,10 @@ object JpaRules {
     fun noEagerFetch(): ArchRule =
         noMembers().should(useEagerFetch())
             .because("no property should be fetched eagerly by default")
+
+    fun noNullableOrOptional(): ArchRule =
+        noMembers()
+            .should(useNullableOrOptional())
+            .andShould(notBeAnnotatedWith(jetbrainsNullableAnnotation()))
+            .because("no property should be nullable or optional and not annotated with jetbrains [Nullable]")
 }
