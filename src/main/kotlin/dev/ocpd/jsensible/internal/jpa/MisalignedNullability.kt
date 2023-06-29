@@ -8,25 +8,25 @@ import com.tngtech.archunit.lang.ArchCondition
 import com.tngtech.archunit.lang.conditions.ArchConditions.beAnnotatedWith
 
 /**
- * Nullable or optional usage condition.
+ * Misaligned nullability usage condition.
  */
-object NullableOrOptional {
+object MisalignedNullability {
 
     /**
-     * Matches nullable or optional usage.
+     * Matches misaligned nullability usage.
      */
-    internal fun useNullableOrOptional(): ArchCondition<in JavaMember> =
+    internal fun useMisalignedNullability(): ArchCondition<in JavaMember> =
         beAnnotatedWith(
-            associationWithNullableOrOptional()
-        ).`as`("use nullable or optional")
+            associationWithMisalignedNullability()
+        ).`as`("use misaligned nullability")
 
     /**
      * Check if the annotation is a JPA association annotation and configured
      * to nullable or optional.
      */
-    private fun associationWithNullableOrOptional(): DescribedPredicate<JavaAnnotation<*>> {
+    private fun associationWithMisalignedNullability(): DescribedPredicate<JavaAnnotation<*>> {
         val associationAnnotations = associationAnnotations()
-        return describe("nullable or optional annotation") { annotation: JavaAnnotation<*> ->
+        return describe("misaligned nullability annotation") { annotation: JavaAnnotation<*> ->
             if (annotation.type.name !in associationAnnotations) return@describe false
 
             val value =
