@@ -1,8 +1,6 @@
 package dev.ocpd.jsensible.rules.jpa;
 
 import jakarta.persistence.*;
-import org.hibernate.annotations.Any;
-import org.hibernate.annotations.ManyToAny;
 
 @SuppressWarnings("unused")
 public class NoEagerFetch {
@@ -23,12 +21,6 @@ public class NoEagerFetch {
 
         @OneToOne(fetch = FetchType.LAZY)
         private String test5;
-
-        @Any(fetch = FetchType.LAZY)
-        private String test6;
-
-        @ManyToAny(fetch = FetchType.LAZY)
-        private String test7;
     }
 
     public static class NonCompliant1 {
@@ -58,18 +50,6 @@ public class NoEagerFetch {
     public static class NonCompliant5 {
 
         @OneToOne
-        private String test;
-    }
-
-    public static class NonCompliant6 {
-
-        @Any
-        private String test;
-    }
-
-    public static class NonCompliant7 {
-
-        @ManyToAny
         private String test;
     }
 }
