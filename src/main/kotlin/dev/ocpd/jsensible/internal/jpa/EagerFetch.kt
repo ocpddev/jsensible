@@ -41,7 +41,5 @@ internal object EagerFetch {
         "jakarta.persistence.OneToOne",
         "jakarta.persistence.ManyToMany",
         "jakarta.persistence.ElementCollection",
-        "org.hibernate.annotations.Any",
-        "org.hibernate.annotations.ManyToAny"
     )
 }
