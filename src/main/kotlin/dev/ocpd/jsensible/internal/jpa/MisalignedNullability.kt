@@ -1,46 +1,40 @@
 package dev.ocpd.jsensible.internal.jpa
 
-import com.tngtech.archunit.base.DescribedPredicate
 import com.tngtech.archunit.base.DescribedPredicate.describe
-import com.tngtech.archunit.core.domain.JavaAnnotation
 import com.tngtech.archunit.core.domain.JavaMember
 import com.tngtech.archunit.lang.ArchCondition
-import com.tngtech.archunit.lang.conditions.ArchConditions.beAnnotatedWith
+import com.tngtech.archunit.lang.conditions.ArchConditions.be
+import dev.ocpd.jsensible.internal.nullability.NullabilityAnnotations.nullableAnnotations
+import kotlin.jvm.optionals.getOrNull
 
 /**
- * Misaligned nullability usage condition.
+ * Misaligned nullability declaration condition.
  */
 object MisalignedNullability {
 
     /**
-     * Matches misaligned nullability usage.
+     * Matches misaligned nullability declaration.
      */
-    internal fun useMisalignedNullability(): ArchCondition<in JavaMember> =
-        beAnnotatedWith(
-            associationWithMisalignedNullability()
-        ).`as`("use misaligned nullability")
-
-    /**
-     * Check if the annotation is a JPA association annotation and configured
-     * to nullable or optional.
-     */
-    private fun associationWithMisalignedNullability(): DescribedPredicate<JavaAnnotation<*>> {
-        val associationAnnotations = associationAnnotations()
-        return describe("misaligned nullability annotation") { annotation: JavaAnnotation<*> ->
-            if (annotation.type.name !in associationAnnotations) return@describe false
-
-            val value =
-                if (annotation.type.name == "jakarta.persistence.Column") annotation["nullable"].orElse(null)
-                else annotation["optional"].orElse(null)
-
-            value is Boolean && value == true
-        }
+    internal fun haveMisalignedNullability(): ArchCondition<in JavaMember> {
+        return be(describe("have misaligned nullability") { member ->
+            val jpaNullability = member.jpaNullability() ?: return@describe false
+            jpaNullability != member.javaNullability()
+        })
     }
 
-    private fun associationAnnotations() = setOf(
+    private fun JavaMember.jpaNullability(): Boolean? =
+        annotations.firstOrNull { it.type.name in nullableJpaAnnotations() }
+            ?.run {
+                this["nullable"].getOrNull() as? Boolean
+                    ?: this["optional"].getOrNull() as? Boolean
+            }
+
+    private fun JavaMember.javaNullability(): Boolean =
+        isAnnotatedWith(nullableAnnotations())
+
+    private fun nullableJpaAnnotations() = setOf(
         "jakarta.persistence.ManyToOne",
         "jakarta.persistence.OneToOne",
-        "org.hibernate.annotations.Any",
         "jakarta.persistence.Column"
     )
 }

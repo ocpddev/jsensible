@@ -1,11 +1,9 @@
 package dev.ocpd.jsensible.rules.jpa
 
 import com.tngtech.archunit.lang.ArchRule
-import com.tngtech.archunit.lang.conditions.ArchConditions.notBeAnnotatedWith
 import com.tngtech.archunit.lang.syntax.ArchRuleDefinition.noMembers
 import dev.ocpd.jsensible.internal.jpa.EagerFetch.useEagerFetch
-import dev.ocpd.jsensible.internal.jpa.MisalignedNullability.useMisalignedNullability
-import dev.ocpd.jsensible.internal.nullability.NullabilityAnnotations.jetbrainsNullableAnnotation
+import dev.ocpd.jsensible.internal.jpa.MisalignedNullability.haveMisalignedNullability
 
 /**
  * General Java/Jakarta Persistence API (JPA) rules.
@@ -34,19 +32,15 @@ object JpaRules {
             .because("no property should be fetched eagerly by default")
 
     /**
-     * JPA properties should be either non-nullable or non-optional, and nullable properties must be annotated
-     * with [org.jetbrains.annotations.Nullable].
+     * JPA properties in both the database and the code should have aligned nullabilities.
      *
-     * Properties in JPA should either be marked as non-nullable (nullable = false) and non-optional (optional = false),
-     * or they must be annotated with [org.jetbrains.annotations.Nullable] to prevent potential null pointer exceptions
-     * or errors during JPA data persistence.
+     * To avoid potential NPE when implementing business logic, the nullability of the
+     * JPA property in the code should match the nullability of the column in the database.
      *
-     * Solution: Ensure that a property is either non-nullable and non-optional, or it is annotated with
-     * [org.jetbrains.annotations.Nullable] annotation.
+     * Solution: Annotate the JPA property with the appropriate nullability annotation.
      */
     fun noMisalignedNullability(): ArchRule =
         noMembers()
-            .should(useMisalignedNullability())
-            .andShould(notBeAnnotatedWith(jetbrainsNullableAnnotation()))
-            .because("no property should be misaligned nullability by default")
+            .should(haveMisalignedNullability())
+            .because("JPA properties in both the database and the code should have aligned nullabilities")
 }
