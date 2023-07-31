@@ -21,6 +21,10 @@ internal object NullabilityAnnotations {
         )
     ).forSubtype()
 
+    internal fun jetbrainsNullableAnnotation(): DescribedPredicate<JavaAnnotation<*>> = rawType(
+        anyOf("org.jetbrains.annotations.Nullable")
+    ).forSubtype()
+
     internal fun nullableAnnotations(): DescribedPredicate<JavaClass> =
         simpleName("Nullable")
 
