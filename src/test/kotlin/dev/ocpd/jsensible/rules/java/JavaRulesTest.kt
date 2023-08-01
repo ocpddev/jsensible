@@ -6,5 +6,5 @@ import org.junit.jupiter.api.Test
 class JavaRulesTest {
 
     @Test
-    fun noLegacyIoFile() = testRule<NoLegacyIoFile>(JavaRules.noLegacyIoFile())
+    fun noLegacyIoFile() = testRule<NoLegacyIoFile>(JavaRules.noLegacyIoFile)
 }

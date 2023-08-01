@@ -1,5 +1,6 @@
 package dev.ocpd.jsensible.rules.jpa
 
+import com.tngtech.archunit.junit.ArchTest
 import com.tngtech.archunit.lang.ArchRule
 import com.tngtech.archunit.lang.syntax.ArchRuleDefinition.noMembers
 import dev.ocpd.jsensible.internal.jpa.EagerFetch.useEagerFetch
@@ -9,11 +10,6 @@ import dev.ocpd.jsensible.internal.jpa.MisalignedNullability.haveMisalignedNulla
  * General Java/Jakarta Persistence API (JPA) rules.
  */
 object JpaRules {
-
-    fun all() = listOf(
-        noEagerFetch(),
-        noMisalignedNullability()
-    )
 
     /**
      * Eager fetch is a performance anti-pattern.
@@ -27,7 +23,8 @@ object JpaRules {
      *
      * Solution: Always use lazy fetch by default, specify query-based fetch plans when needed.
      */
-    fun noEagerFetch(): ArchRule =
+    @ArchTest
+    val noEagerFetch: ArchRule =
         noMembers().should(useEagerFetch())
             .because("no property should be fetched eagerly by default")
 
@@ -39,7 +36,8 @@ object JpaRules {
      *
      * Solution: Annotate the JPA property with the appropriate nullability annotation.
      */
-    fun noMisalignedNullability(): ArchRule =
+    @ArchTest
+    val noMisalignedNullability: ArchRule =
         noMembers()
             .should(haveMisalignedNullability())
             .because("JPA properties in both the database and the code should have aligned nullabilities")

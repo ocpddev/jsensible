@@ -6,13 +6,13 @@ import org.junit.jupiter.api.Test
 class SpringRulesTest {
 
     @Test
-    fun noJakartaTransactionOnClass() = testRule<NoJakartaTransactionOnClass>(SpringRules.noJakartaTransactionOnClass())
+    fun noJakartaTransactionOnClass() = testRule<NoJakartaTransactionOnClass>(SpringRules.noJakartaTransactionOnClass)
 
     @Test
     fun noJakartaTransactionOnMethod() =
-        testRule<NoJakartaTransactionOnMethod>(SpringRules.noJakartaTransactionOnMethod())
+        testRule<NoJakartaTransactionOnMethod>(SpringRules.noJakartaTransactionOnMethod)
 
     @Test
     fun noNullableMisuseInRepositories() =
-        testRule<NoNullableMisuseInRepositories>(SpringRules.noNullableMisuseInRepositories())
+        testRule<NoNullableMisuseInRepositories>(SpringRules.noNullableMisuseInRepositories)
 }

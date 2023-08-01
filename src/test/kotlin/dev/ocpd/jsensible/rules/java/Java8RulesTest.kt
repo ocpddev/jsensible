@@ -6,5 +6,5 @@ import org.junit.jupiter.api.Test
 class Java8RulesTest {
 
     @Test
-    fun noLegacyDateTime() = testRule<NoLegacyDateTime>(Java8Rules.noLegacyDateTime())
+    fun noLegacyDateTime() = testRule<NoLegacyDateTime>(Java8Rules.noLegacyDateTime)
 }

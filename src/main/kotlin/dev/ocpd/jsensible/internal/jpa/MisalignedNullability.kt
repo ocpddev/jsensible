@@ -23,7 +23,7 @@ object MisalignedNullability {
     }
 
     private fun JavaMember.jpaNullability(): Boolean? =
-        annotations.firstOrNull { it.type.name in nullableJpaAnnotations() }
+        annotations.firstOrNull { it.type.name in nullableJpaAnnotations }
             ?.run {
                 this["nullable"].getOrNull() as? Boolean
                     ?: this["optional"].getOrNull() as? Boolean
@@ -32,7 +32,7 @@ object MisalignedNullability {
     private fun JavaMember.javaNullability(): Boolean =
         isAnnotatedWith(nullableAnnotations())
 
-    private fun nullableJpaAnnotations() = setOf(
+    private val nullableJpaAnnotations = setOf(
         "jakarta.persistence.ManyToOne",
         "jakarta.persistence.OneToOne",
         "jakarta.persistence.Column"

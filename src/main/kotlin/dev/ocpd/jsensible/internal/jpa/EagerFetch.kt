@@ -26,7 +26,6 @@ internal object EagerFetch {
      * to EAGER fetch.
      */
     private fun associationWithEagerFetch(): DescribedPredicate<JavaAnnotation<*>> {
-        val associationAnnotations = associationAnnotations()
         return describe("eager fetch annotation") { annotation: JavaAnnotation<*> ->
             if (annotation.type.name !in associationAnnotations) return@describe false
 
@@ -35,7 +34,7 @@ internal object EagerFetch {
         }
     }
 
-    private fun associationAnnotations() = setOf(
+    private val associationAnnotations = setOf(
         "jakarta.persistence.OneToMany",
         "jakarta.persistence.ManyToOne",
         "jakarta.persistence.OneToOne",

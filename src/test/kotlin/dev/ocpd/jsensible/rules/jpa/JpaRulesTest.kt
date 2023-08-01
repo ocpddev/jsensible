@@ -6,8 +6,8 @@ import org.junit.jupiter.api.Test
 class JpaRulesTest {
 
     @Test
-    fun noEagerFetch() = testRule<NoEagerFetch>(JpaRules.noEagerFetch())
+    fun noEagerFetch() = testRule<NoEagerFetch>(JpaRules.noEagerFetch)
 
     @Test
-    fun noMisalignedNullability() = testRule<NoMisalignedNullability>(JpaRules.noMisalignedNullability())
+    fun noMisalignedNullability() = testRule<NoMisalignedNullability>(JpaRules.noMisalignedNullability)
 }

@@ -1,8 +1,10 @@
 package dev.ocpd.jsensible.rules.java
 
+import com.tngtech.archunit.junit.ArchTest
 import com.tngtech.archunit.lang.ArchRule
 import com.tngtech.archunit.lang.syntax.ArchRuleDefinition.noClasses
 import com.tngtech.archunit.library.GeneralCodingRules
+import dev.ocpd.jsensible.internal.include
 import dev.ocpd.jsensible.internal.java.LegacyIoFile.useLegacyIoFile
 
 /**
@@ -10,14 +12,14 @@ import dev.ocpd.jsensible.internal.java.LegacyIoFile.useLegacyIoFile
  */
 object JavaRules {
 
-    fun all() = listOf(
-        noStandardStreams(),
-        noJavaUtilLogging(),
-        noLegacyIoFile(),
-        noGenericExceptions(),
-        noMisplacedTests(),
-        noFieldInjection()
-    ) + Java8Rules.all() + Java11Rules.all() + Java17Rules.all()
+    @ArchTest
+    val java8 = include<Java8Rules>()
+
+    @ArchTest
+    val java11 = include<Java11Rules>()
+
+    @ArchTest
+    val java17 = include<Java17Rules>()
 
     /**
      * Directly accessing standard streams is generally considered as a bad practice:
@@ -26,7 +28,8 @@ object JavaRules {
      *
      * Solution: Use a proper logging utility instead.
      */
-    fun noStandardStreams(): ArchRule =
+    @ArchTest
+    val noStandardStreams: ArchRule =
         GeneralCodingRules.NO_CLASSES_SHOULD_ACCESS_STANDARD_STREAMS
             .because("proper logging utility should be used instead")
 
@@ -35,7 +38,8 @@ object JavaRules {
      *
      * Solution: Use a logging facade (e.g. SLF4J) instead.
      */
-    fun noJavaUtilLogging(): ArchRule =
+    @ArchTest
+    val noJavaUtilLogging: ArchRule =
         GeneralCodingRules.NO_CLASSES_SHOULD_USE_JAVA_UTIL_LOGGING
             .because("proper logging facade should be used instead")
 
@@ -46,7 +50,8 @@ object JavaRules {
      *
      * Solution: Use [java.nio.file.Path] and [java.nio.file.Files] instead.
      */
-    fun noLegacyIoFile(): ArchRule =
+    @ArchTest
+    val noLegacyIoFile: ArchRule =
         noClasses().should(useLegacyIoFile())
             .because("[java.io.File] has many drawbacks and should not be used, use [java.nio.file.Files] instead")
 
@@ -59,7 +64,8 @@ object JavaRules {
      * - [IllegalStateException]
      * - [UnsupportedOperationException]
      */
-    fun noGenericExceptions(): ArchRule =
+    @ArchTest
+    val noGenericExceptions: ArchRule =
         GeneralCodingRules.NO_CLASSES_SHOULD_THROW_GENERIC_EXCEPTIONS
             .because("generic exception provides very little information about the actual problem")
 
@@ -70,7 +76,8 @@ object JavaRules {
      *
      * Solution: Move test classes to the same package as implementation.
      */
-    fun noMisplacedTests(): ArchRule =
+    @ArchTest
+    val noMisplacedTests: ArchRule =
         GeneralCodingRules.testClassesShouldResideInTheSamePackageAsImplementation()
             .because("it allows to access package-private members and use package-private classes as test fixtures")
 
@@ -85,7 +92,8 @@ object JavaRules {
      *
      * Solution: Use constructor injection instead.
      */
-    fun noFieldInjection(): ArchRule =
+    @ArchTest
+    val noFieldInjection: ArchRule =
         GeneralCodingRules.NO_CLASSES_SHOULD_USE_FIELD_INJECTION
             .because("field injection is considered harmful and should be avoided, use constructor injection instead")
 }

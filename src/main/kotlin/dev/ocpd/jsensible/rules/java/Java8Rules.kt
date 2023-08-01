@@ -1,5 +1,6 @@
 package dev.ocpd.jsensible.rules.java
 
+import com.tngtech.archunit.junit.ArchTest
 import com.tngtech.archunit.lang.ArchRule
 import com.tngtech.archunit.lang.syntax.ArchRuleDefinition.noClasses
 import com.tngtech.archunit.library.GeneralCodingRules
@@ -12,17 +13,13 @@ import java.util.*
  */
 object Java8Rules {
 
-    fun all() = listOf(
-        noJodaTime(),
-        noLegacyDateTime()
-    )
-
     /**
      * JodaTime is a legacy library that is no longer maintained.
      *
      * Solution: Use the [java.time] API provided by JDK 8 instead.
      */
-    fun noJodaTime(): ArchRule =
+    @ArchTest
+    val noJodaTime: ArchRule =
         GeneralCodingRules.NO_CLASSES_SHOULD_USE_JODATIME
             .because("modern Java projects should use the Java 8 [java.time] API instead")
 
@@ -34,7 +31,8 @@ object Java8Rules {
      *
      * Solution: Use the [java.time] API provided by JDK 8 instead.
      */
-    fun noLegacyDateTime(): ArchRule =
+    @ArchTest
+    val noLegacyDateTime: ArchRule =
         noClasses().should(useLegacyDateTime())
             .because("modern Java projects should use the Java 8 [java.time] API instead")
 }

@@ -1,5 +1,6 @@
 package dev.ocpd.jsensible.rules.java
 
+import com.tngtech.archunit.junit.ArchTest
 import com.tngtech.archunit.lang.ArchRule
 import com.tngtech.archunit.lang.syntax.ArchRuleDefinition.noClasses
 import java.net.URI
@@ -12,11 +13,6 @@ import java.util.*
  */
 object Java11Rules {
 
-    fun all() = listOf(
-        noOptionalGet(),
-        noPathsGet()
-    )
-
     /**
      * The [Optional.get] method is deprecated by JDK:
      *
@@ -24,7 +20,8 @@ object Java11Rules {
      *
      * Solution: Replace [Optional.get] with [Optional.orElseThrow].
      */
-    fun noOptionalGet(): ArchRule =
+    @ArchTest
+    val noOptionalGet: ArchRule =
         noClasses().should().callMethod(Optional::class.java, "get")
             .because("JDK recommends [Optional.orElseThrow] as the preferred alternative")
 
@@ -37,7 +34,8 @@ object Java11Rules {
      *
      * Solution: Replace [Paths.get] with [Path.of].
      */
-    fun noPathsGet(): ArchRule =
+    @ArchTest
+    val noPathsGet: ArchRule =
         noClasses()
             .should().callMethod(Paths::class.java, "get", String::class.java, Array<String>::class.java)
             .orShould().callMethod(Paths::class.java, "get", URI::class.java)

@@ -1,10 +1,7 @@
 package dev.ocpd.jsensible
 
-import com.tngtech.archunit.lang.CompositeArchRule
-import dev.ocpd.jsensible.rules.JSensibleRules
+import dev.ocpd.jsensible.internal.include
 
 object JSensible {
-    fun all() = CompositeArchRule.of(
-        JSensibleRules.all()
-    ).`as`("JSensible Rules")
+    fun default() = include<JSensibleRules>()
 }

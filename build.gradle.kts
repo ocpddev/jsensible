@@ -44,8 +44,8 @@ dependencyManagement {
 
 dependencies {
     api(libs.archunit)
+    api(libs.archunit.junit)
     testImplementation(kotlin("test"))
-    testImplementation(libs.archunit.junit)
     testImplementation("org.springframework.boot:spring-boot-starter-data-jpa")
 }
 
