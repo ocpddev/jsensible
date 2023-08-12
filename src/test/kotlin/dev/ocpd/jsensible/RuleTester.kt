@@ -12,7 +12,7 @@ inline fun <reified T> testRule(rule: ArchRule) {
         } else if (clazz.simpleName.startsWith("NonCompliant")) {
             assertThrows<AssertionError> {
                 rule.check(classes)
-            }
+            }.also { println(it.message) }
         }
     }
 }

@@ -2,10 +2,12 @@ package dev.ocpd.jsensible.rules.java
 
 import com.tngtech.archunit.junit.ArchTest
 import com.tngtech.archunit.lang.ArchRule
+import com.tngtech.archunit.lang.syntax.ArchRuleDefinition.methods
 import com.tngtech.archunit.lang.syntax.ArchRuleDefinition.noClasses
 import com.tngtech.archunit.library.GeneralCodingRules
 import dev.ocpd.jsensible.internal.include
 import dev.ocpd.jsensible.internal.java.LegacyIoFile.useLegacyIoFile
+import dev.ocpd.jsensible.internal.nullability.OperandNullability.acceptNullableOperand
 
 /**
  * Contains rules that are applicable to Java versions prior to Java 8.
@@ -96,4 +98,18 @@ object JavaRules {
     val noFieldInjection: ArchRule =
         GeneralCodingRules.NO_CLASSES_SHOULD_USE_FIELD_INJECTION
             .because("field injection is considered harmful and should be avoided, use constructor injection instead")
+
+    /**
+     * The `equals` method should accept a nullable operand.
+     *
+     * By convention, `equals` method should always accept `null` as an operand.
+     * This is also to allow `obj == null` to be written in Kotlin.
+     *
+     * Solution: Make sure the operand of `equals` method is annotated with `@Nullable`.
+     */
+    @ArchTest
+    val equalsShouldAcceptNull: ArchRule =
+        methods().that().haveName("equals")
+            .should(acceptNullableOperand())
+            .because("`null` is a valid operand for [equals] method")
 }

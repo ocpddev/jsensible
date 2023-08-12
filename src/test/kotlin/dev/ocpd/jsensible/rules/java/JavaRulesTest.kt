@@ -7,4 +7,7 @@ class JavaRulesTest {
 
     @Test
     fun noLegacyIoFile() = testRule<NoLegacyIoFile>(JavaRules.noLegacyIoFile)
+
+    @Test
+    fun equalsShouldAcceptNull() = testRule<EqualsShouldAcceptNull>(JavaRules.equalsShouldAcceptNull)
 }
