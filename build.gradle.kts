@@ -49,23 +49,23 @@ publishing {
         create<MavenPublication>("maven") {
             from(components["java"])
             pom {
-                name.set("jsensible")
-                description.set("Sensible Java conventions")
-                url.set("https://github.com/ocpddev/jsensible")
+                name = "jsensible"
+                description = "Sensible Java conventions"
+                url = "https://github.com/ocpddev/jsensible"
                 licenses {
                     license {
-                        name.set("The Apache License, Version 2.0")
-                        url.set("https://www.apache.org/licenses/LICENSE-2.0.txt")
+                        name = "The Apache License, Version 2.0"
+                        url = "https://www.apache.org/licenses/LICENSE-2.0.txt"
                     }
                 }
                 scm {
-                    url.set("https://github.com/ocpddev/jsensible")
+                    url = "https://github.com/ocpddev/jsensible"
                 }
                 developers {
                     developer {
-                        id.set("sola")
-                        name.set("Sola")
-                        email.set("sola@ocpd.dev")
+                        id = "sola"
+                        name = "Sola"
+                        email = "sola@ocpd.dev"
                     }
                 }
             }
