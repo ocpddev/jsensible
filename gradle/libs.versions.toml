@@ -4,7 +4,7 @@ archunit = "1.1.0"
 
 [plugins]
 kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
-dokka = { id = "org.jetbrains.dokka", version = "1.9.0" }
+dokka = { id = "org.jetbrains.dokka", version = "1.9.10" }
 spring-boot = { id = "org.springframework.boot", version = "3.1.4" }
 spring-dependency-management = { id = "io.spring.dependency-management", version = "1.1.3" }
 
