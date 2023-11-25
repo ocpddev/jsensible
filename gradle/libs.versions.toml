@@ -1,5 +1,5 @@
 [versions]
-kotlin = "1.9.20"
+kotlin = "1.9.21"
 archunit = "1.2.0"
 
 [plugins]
