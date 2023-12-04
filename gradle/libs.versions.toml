@@ -1,6 +1,6 @@
 [versions]
 kotlin = "1.9.21"
-archunit = "1.2.0"
+archunit = "1.2.1"
 
 [plugins]
 kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
